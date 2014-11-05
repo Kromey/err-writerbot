@@ -5,15 +5,21 @@ import random
 class WriterBot(BotPlugin):
     """A collection of fun and useful tools for writers."""
 
-    _data_dir = None
+    _data = {}
     def activate(self):
         """Triggers on plugin activation"""
         super(WriterBot, self).activate()
-        self._data_dir = os.path.join(
+        data_dir = os.path.join(
                 os.path.realpath(os.path.dirname(__file__)),
                 'data'
                 )
-
+        #Load our data files into memory
+        for root, _, files in os.walk(data_dir):
+            for filename in files:
+                datafile = os.path.join(root, filename)
+                basename, _ = os.path.splitext(filename)
+                with open(datafile) as f:
+                    WriterBot._data[basename] = [l.strip() for l in f.readlines()]
 
     @botcmd(split_args_with=None)
     def plot_bunny(self, msg, args):
@@ -32,7 +38,7 @@ class WriterBot(BotPlugin):
             mc = args[0].capitalize()
         else:
             mc = '____'
-        return self.random_line('bunnies.txt', mc=mc)
+        return random.choice(self._data['bunnies']).format(mc=mc)
 
     @botcmd
     def plot_ninja(self, msg, args):
@@ -43,14 +49,15 @@ class WriterBot(BotPlugin):
         ninjas) that can be found and provide a new twist or hook or
         otherwise get a story moving again.
         """
-        return self.random_line('ninjas.txt')
+        return random.choice(self._data['ninjas'])
 
     @botcmd
     def random_profession(self, msg, args):
         """
         Get a random profession
         """
-        return self.random_line('professions.txt')
+        #return random.choice(self._data['professions'])
+        return random.choice(self._data['professions'])
 
     @botcmd
     def random_job(self, msg, args):
@@ -79,38 +86,18 @@ class WriterBot(BotPlugin):
             gender = random.choice(('male', 'female'))
 
         if gender == 'male':
-            first = self.random_line('names_boys.txt')
+            first = random.choice(self._data['names_boys'])
         else:
-            first = self.random_line('names_girls.txt')
+            first = random.choice(self._data['names_girls'])
 
         if random.randrange(5):
-            surname = self.random_line('names_surnames.txt')
+            surname = random.choice(self._data['names_surnames'])
         else:
             surname = "{}-{}".format(
-                    self.random_line('names_surnames.txt'),
-                    self.random_line('names_surnames.txt')
+                    random.choice(self._data['names_surnames']),
+                    random.choice(self._data['names_surnames'])
                     )
 
         yield "I've picked this {} name just for you:".format(gender)
         yield "{} {}".format(first, surname)
 
-    def random_line(self, filename, **kwargs):
-        #Get the path to the file
-        filepath = os.path.join(self._data_dir, filename)
-
-        #Pick a random line using Waterman's "Reservoir Algorithm"
-        with open(filepath) as infile:
-            line = next(infile)
-            for num, aline in enumerate(infile):
-                if random.randrange(num + 2): continue
-                line = aline
-
-        #Strip leading/trailing whitespace
-        #(especially the newline character at the end!)
-        line = line.strip()
-
-        #If we were passed formatting kwargs, format the line
-        if kwargs:
-            line = line.format(**kwargs)
-
-        return line
