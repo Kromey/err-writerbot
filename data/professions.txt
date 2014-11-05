@@ -1,0 +1,156 @@
+accountant
+administrative services department manager
+agricultural advisor
+air-conditioning installer or mechanic
+aircraft service technician
+ambulance driver
+animal carer
+arable farmer
+arable farm manager
+architect
+asbestos removal worker
+assembler
+assembly team leader
+bank clerk
+beauty therapist
+beverage production process controller
+boring machine operator
+bricklayer
+butcher
+car mechanic
+carpenter
+charge nurse
+check-out operator
+child-carer
+child care services manager
+civil engineering technician
+cleaning supervisor
+climatologist
+cloak room attendant
+cnc operator
+community health worker
+company director
+confectionery maker
+construction operative
+cooling or freezing installer or mechanic
+database designer
+dental hygienist
+dental prosthesis technician
+department store manager
+dietician
+display designer
+domestic housekeeper
+education advisor
+electrical engineer
+electrical mechanic or fitter
+engineering maintenance supervisor
+estate agent
+executive secretary
+felt roofer
+filing clerk
+financial clerk
+financial services manager
+fire fighter
+first line supervisor beverages workers
+first line supervisor of cleaning workers
+flight attendant
+floral arranger
+food scientist
+garage supervisor
+gardener
+general practitioner
+hairdresser
+head groundsman
+horse riding instructor
+hospital nurse
+hotel manager
+house painter
+hr manager
+it applications programmer
+it systems administrator
+journalist
+judge
+kitchen assistant
+lathe setter-operator
+lawyer
+legal secretary
+local police officer
+logistics manager
+machine tool operator
+manager
+meat processing operator
+mechanical engineering technician
+medical laboratory technician
+medical radiography equipment operator
+metal moulder
+metal production process operator
+meteorologist
+midwifery professional
+mortgage clerk
+musical instrument maker
+non-commissioned officer armed forces
+nursery school teacher
+nursing aid
+ophthalmic optician
+payroll clerk
+personal carer in an institution for the elderly
+personal carer in an institution for the handicapped
+personal carer in private homes
+personnel clerk
+pest controller
+physician assistant
+pipe fitter
+plant maintenance mechanic
+plumber
+police inspector
+policy advisor
+post secondary education teacher
+post sorting or distributing clerk
+power plant operator
+primary school head
+primary school teacher
+printing machine operator
+psychologist
+quality inspector
+receptionist
+restaurant cook
+road paviour
+roofer
+sailor
+sales assistant
+sales or marketing manager
+sales representative
+sales support clerk
+seaman
+secondary school manager
+secondary school teacher
+secretary
+security guard
+sheet metal worker
+ship mechanic
+shoe repairer
+socialphotographer
+soldier
+soldier (Fire Nation)
+speech therapist
+steel fixer
+stockman
+structural engineer
+surgeon
+surgical footwear maker
+swimming instructor
+tailor/seamstress
+taxi driver
+tax inspector
+tile layer
+transport clerk
+travel agency clerk
+truck driver long distances
+university professor
+university researcher
+veterinary practitioner
+vocational education teacher
+waiting staff
+web developer
+welder
+wood processing plant operator

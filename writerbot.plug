@@ -1,0 +1,9 @@
+[Core]
+Name = WriterBot
+Module = writerbot
+
+[Python]
+Version = 3
+
+[Documentation]
+Description = A collection of fun and useful helpers for writers
