@@ -4,3 +4,4 @@ explodes
 collapses
 bursts
 coalesces
+reverses the polarity
