@@ -28,6 +28,7 @@ quantum
 spatial
 static
 subharmonic
+vacuum
 vertion
 warp
 zero-point

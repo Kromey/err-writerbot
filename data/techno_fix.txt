@@ -5,6 +5,7 @@ isolate
 jump-start
 realign
 recalibrate
+re-energize
 refocus
 reroute
 reverse

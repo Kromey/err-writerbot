@@ -5,6 +5,7 @@ capacitor
 conduit
 converter
 core
+detector
 discriminator
 field
 filament
@@ -15,3 +16,4 @@ shell
 signature
 spanner
 stream
+terminal
