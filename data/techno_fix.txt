@@ -1,0 +1,11 @@
+realign
+reverse
+calibrate
+refocus
+increase power to
+recalibrate
+isolate
+reroute
+synchronize
+jump-start
+attenuate

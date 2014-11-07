@@ -1,0 +1,9 @@
+{location} {adj} {noun}
+{location} {prefix}-{adj} {noun}
+{adj} {noun}
+{prefix}-{adj} {noun}
+{adj} {adj2} {noun}
+{prefix}-{adj} {adj2} {noun}
+{prefix}{adj} {noun}
+{prefix}-{noun}
+{adj} {prefix}-{noun}

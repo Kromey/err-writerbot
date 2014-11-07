@@ -101,3 +101,33 @@ class WriterBot(BotPlugin):
         yield "I've picked this {} name just for you:".format(gender)
         yield "{} {}".format(first, surname)
 
+    @botcmd
+    def technobabble(self, msg, args):
+        """
+        Random technobabble generator
+
+        Now you too can sound just like Geordi LaForge! Now with 100%
+        more trans-plasmic shells!
+        """
+        pattern = random.choice(self._data['techno_patterns'])
+        fix = random.choice(self._data['techno_fix'])
+        babble = self._make_babble()
+        thing = self._make_babble()
+        fails = random.choice(self._data['techno_fails'])
+        fails2 = random.choice(self._data['techno_fails'])
+        if fails == fails2:
+            fails2 = random.choice(self._data['techno_fails'])
+        return pattern.format(fix=fix, babble=babble, thing=thing, fails=fails, fails2=fails2)
+
+    def _make_babble(self):
+        """Helper method to make babble"""
+        pattern = random.choice(self._data['techno_babble_patterns'])
+        location = random.choice(self._data['techno_babble_locations'])
+        prefix = random.choice(self._data['techno_babble_prefix'])
+        adj = random.choice(self._data['techno_babble_adj'])
+        adj2 = random.choice(self._data['techno_babble_adj'])
+        if adj == adj2:
+            adj2 = random.choice(self._data['techno_babble_adj'])
+        noun = random.choice(self._data['techno_babble_nouns'])
+        return pattern.format(location=location, prefix=prefix, adj=adj, adj2=adj2, noun=noun)
+

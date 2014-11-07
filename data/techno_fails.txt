@@ -1,0 +1,6 @@
+fails
+implodes
+explodes
+collapses
+bursts
+coalesces
