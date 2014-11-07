@@ -38,7 +38,7 @@ class WriterBot(BotPlugin):
             mc = args[0].capitalize()
         else:
             mc = '____'
-        return random.choice(self._data['bunnies']).format(mc=mc)
+        return self._get_data('bunnies').format(mc=mc)
 
     @botcmd
     def plot_ninja(self, msg, args):
@@ -49,15 +49,15 @@ class WriterBot(BotPlugin):
         ninjas) that can be found and provide a new twist or hook or
         otherwise get a story moving again.
         """
-        return random.choice(self._data['ninjas'])
+        return self._get_data('ninjas')
 
     @botcmd
     def random_profession(self, msg, args):
         """
         Get a random profession
         """
-        #return random.choice(self._data['professions'])
-        return random.choice(self._data['professions'])
+        #return self._get_data('professions')
+        return self._get_data('professions')
 
     @botcmd
     def random_job(self, msg, args):
@@ -86,16 +86,16 @@ class WriterBot(BotPlugin):
             gender = random.choice(('male', 'female'))
 
         if gender == 'male':
-            first = random.choice(self._data['names_boys'])
+            first = self._get_data('names_boys')
         else:
-            first = random.choice(self._data['names_girls'])
+            first = self._get_data('names_girls')
 
         if random.randrange(5):
-            surname = random.choice(self._data['names_surnames'])
+            surname = self._get_data('names_surnames')
         else:
             surname = "{}-{}".format(
-                    random.choice(self._data['names_surnames']),
-                    random.choice(self._data['names_surnames'])
+                    self._get_data('names_surnames'),
+                    self._get_data('names_surnames')
                     )
 
         yield "I've picked this {} name just for you:".format(gender)
@@ -109,25 +109,29 @@ class WriterBot(BotPlugin):
         Now you too can sound just like Geordi LaForge! Now with 100%
         more trans-plasmic shells!
         """
-        pattern = random.choice(self._data['techno_patterns'])
-        fix = random.choice(self._data['techno_fix'])
+        pattern = self._get_data('techno_patterns')
+        fix = self._get_data('techno_fix')
         babble = self._make_babble()
         thing = self._make_babble()
-        fails = random.choice(self._data['techno_fails'])
-        fails2 = random.choice(self._data['techno_fails'])
+        fails = self._get_data('techno_fails')
+        fails2 = self._get_data('techno_fails')
         if fails == fails2:
-            fails2 = random.choice(self._data['techno_fails'])
+            fails2 = self._get_data('techno_fails')
         return pattern.format(fix=fix, babble=babble, thing=thing, fails=fails, fails2=fails2)
 
     def _make_babble(self):
         """Helper method to make babble"""
-        pattern = random.choice(self._data['techno_babble_patterns'])
-        location = random.choice(self._data['techno_babble_locations'])
-        prefix = random.choice(self._data['techno_babble_prefix'])
-        adj = random.choice(self._data['techno_babble_adj'])
-        adj2 = random.choice(self._data['techno_babble_adj'])
+        pattern = self._get_data('techno_babble_patterns')
+        location = self._get_data('techno_babble_locations')
+        prefix = self._get_data('techno_babble_prefix')
+        adj = self._get_data('techno_babble_adj')
+        adj2 = self._get_data('techno_babble_adj')
         if adj == adj2:
-            adj2 = random.choice(self._data['techno_babble_adj'])
-        noun = random.choice(self._data['techno_babble_nouns'])
+            adj2 = self._get_data('techno_babble_adj')
+        noun = self._get_data('techno_babble_nouns')
         return pattern.format(location=location, prefix=prefix, adj=adj, adj2=adj2, noun=noun)
+
+    def _get_data(self, src):
+        """Helper method to fetch a random line of data"""
+        return random.choice(self._data[src])
 
