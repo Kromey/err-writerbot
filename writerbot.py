@@ -109,6 +109,11 @@ class WriterBot(BotPlugin):
             fails2 = self._get_data('techno_fails')
         return pattern.format(fix=fix, babble=babble, thing=thing, fails=fails, fails2=fails2)
 
+    @botcmd(admin_only=True)
+    def reload_data(self, msg, args):
+        self._load_data_cache()
+        return "Data cache reloaded"
+
     def _make_babble(self):
         """Helper method to make babble"""
         pattern = self._get_data('techno_babble_patterns')
