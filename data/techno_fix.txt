@@ -1,12 +1,12 @@
-realign
-reverse
-calibrate
-refocus
-increase power to
-recalibrate
-isolate
-reroute
-synchronize
-jump-start
 attenuate
+calibrate
+increase power to
+isolate
+jump-start
+realign
+recalibrate
+refocus
+reroute
+reverse
 reverse the polarity of
+synchronize

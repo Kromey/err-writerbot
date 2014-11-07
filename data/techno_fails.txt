@@ -1,7 +1,7 @@
-fails
-implodes
-explodes
-collapses
 bursts
 coalesces
+collapses
+explodes
+fails
+implodes
 reverses the polarity

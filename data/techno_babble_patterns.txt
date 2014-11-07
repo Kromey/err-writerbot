@@ -1,9 +1,9 @@
+{adj} {adj2} {noun}
+{adj} {noun}
+{adj} {prefix}-{noun}
 {location} {adj} {noun}
 {location} {prefix}-{adj} {noun}
-{adj} {noun}
-{prefix}-{adj} {noun}
-{adj} {adj2} {noun}
 {prefix}-{adj} {adj2} {noun}
+{prefix}-{adj} {noun}
 {prefix}{adj} {noun}
 {prefix}-{noun}
-{adj} {prefix}-{noun}
