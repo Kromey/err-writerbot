@@ -9,17 +9,7 @@ class WriterBot(BotPlugin):
     def activate(self):
         """Triggers on plugin activation"""
         super(WriterBot, self).activate()
-        data_dir = os.path.join(
-                os.path.realpath(os.path.dirname(__file__)),
-                'data'
-                )
-        #Load our data files into memory
-        for root, _, files in os.walk(data_dir):
-            for filename in files:
-                datafile = os.path.join(root, filename)
-                basename, _ = os.path.splitext(filename)
-                with open(datafile) as f:
-                    WriterBot._data[basename] = [l.strip() for l in f.readlines()]
+        self._load_data_cache()
 
     @botcmd(split_args_with=None)
     def plot_bunny(self, msg, args):
@@ -134,4 +124,19 @@ class WriterBot(BotPlugin):
     def _get_data(self, src):
         """Helper method to fetch a random line of data"""
         return random.choice(self._data[src])
+
+    def _load_data_cache(self):
+        data_dir = os.path.join(
+                os.path.realpath(os.path.dirname(__file__)),
+                'data'
+                )
+        #Start with a clean slate
+        WriterBot._data = {}
+        #Load our data files into memory
+        for root, _, files in os.walk(data_dir):
+            for filename in files:
+                datafile = os.path.join(root, filename)
+                basename, _ = os.path.splitext(filename)
+                with open(datafile) as f:
+                    WriterBot._data[basename] = [l.strip() for l in f.readlines()]
 
