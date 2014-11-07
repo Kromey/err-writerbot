@@ -14,7 +14,7 @@ isomiatic
 magnascopic
 phasic
 genic
-nueucleonic
+nucleonic
 osmotic
 plasmonic
 positronic
