@@ -4,6 +4,7 @@ I'm detecting a {babble}.
 I'm detecting a {babble} in the {thing}.
 I'm reading a power spike in the {babble}!
 That's an impressive {babble}.
+The {babble} will {fix} the {thing} before it {fails}.
 There's a {babble} in the {thing}.
 There's some unusual readings coming from the {babble}.
 We have only minutes until the {babble} {fails} and the {thing} {fails2}!
