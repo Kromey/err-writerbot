@@ -11,6 +11,7 @@ Everything changed when the fire nation attacked...
 {mc} gets injured (falling down stairs/car accident/dropped something/etc) and has a full day of memory loss.
 {mc} gets mugged and has to fend off the mugger.
 {mc} goes to the traveling fair that is in town.
+{mc} has a surprise run-in with their double-talking body double.
 {mc} is out driving when the car stops running.
 {mc} is out when they spot a building/house on fire.
 {mc} is shopping when a robbery occurs and gets taken hostage.
@@ -18,8 +19,9 @@ Everything changed when the fire nation attacked...
 {mc} jumps into the car and decides to go on a long drive.
 {mc} leaves their diary lying out.
 {mc} notices someone is following/stalking him/her.
+{mc} receives a mysterious message.
 {mc} risks his/her life to rescue a pet.
 {mc} risks his/her life to rescue someone.
 {mc} runs into an old friend while out for a walk/run and strikes up a conversation about the old days.
 {mc} witnesses a horrific accident.
-{mc} has a surprise run-in with their double-talking body double.
+The villain turns out to be under mind control.
