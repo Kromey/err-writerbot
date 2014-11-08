@@ -153,7 +153,10 @@ class WriterBot(BotPlugin):
     def _get_data(self, src):
         """Helper method to fetch a random line of data"""
 
-        return random.choice(self._data[src])
+        try:
+            return random.choice(self._data[src])
+        except KeyError:
+            return "Sorry, {} is not one of my data files".format(src)
 
     def _load_data_cache(self):
         """
