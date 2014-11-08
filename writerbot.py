@@ -126,6 +126,18 @@ class WriterBot(BotPlugin):
 
         return pattern.format(fix=fix, babble=babble, thing=thing, fails=fails, fails2=fails2)
 
+    @botcmd
+    def divination(self, msg, args):
+        """Get a random kind of divination"""
+
+        return "{}mancy".format(self._get_data('mancies'))
+
+    @botcmd
+    def diviner(self, msg, args):
+        """Get a random kind of divination"""
+
+        return "{}mancer".format(self._get_data('mancies'))
+
     @botcmd(admin_only=True)
     def reload_data(self, msg, args):
         """Reload the cached data files afresh from disk"""
