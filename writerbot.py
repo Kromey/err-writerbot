@@ -1,13 +1,17 @@
-from errbot import BotPlugin, botcmd
 import os
 import random
+
+from errbot import BotPlugin, botcmd
+
 
 class WriterBot(BotPlugin):
     """A collection of fun and useful tools for writers."""
 
     _data = {}
+
     def activate(self):
         """Triggers on plugin activation"""
+
         super(WriterBot, self).activate()
         self._load_data_cache()
 
@@ -24,10 +28,12 @@ class WriterBot(BotPlugin):
         plot bunny bob
         Bob risks his/her life to rescue someone.
         """
+
         if args:
             mc = args[0].capitalize()
         else:
             mc = '____'
+
         return self._get_data('bunnies').format(mc=mc)
 
     @botcmd
@@ -39,6 +45,7 @@ class WriterBot(BotPlugin):
         ninjas) that can be found and provide a new twist or hook or
         otherwise get a story moving again.
         """
+
         return self._get_data('ninjas')
 
     @botcmd
@@ -46,7 +53,7 @@ class WriterBot(BotPlugin):
         """
         Get a random profession
         """
-        #return self._get_data('professions')
+
         return self._get_data('professions')
 
     @botcmd
@@ -54,6 +61,7 @@ class WriterBot(BotPlugin):
         """
         Alias of "random profession"
         """
+
         return self.random_profession(msg, args)
 
     @botcmd
@@ -70,6 +78,7 @@ class WriterBot(BotPlugin):
         standard of "First Last". Keep this in mind when using this tool
         to generate names that will be used in other cultures.
         """
+
         if args:
             gender = 'male' if args[0].lower() == 'm' else 'female'
         else:
@@ -83,10 +92,10 @@ class WriterBot(BotPlugin):
         if random.randrange(5):
             surname = self._get_data('names_surnames')
         else:
-            surname = "{}-{}".format(
-                    self._get_data('names_surnames'),
-                    self._get_data('names_surnames')
-                    )
+            surname = '-'.join((
+                self._get_data('names_surnames'),
+                self._get_data('names_surnames')
+                ))
 
         yield "I've picked this {} name just for you:".format(gender)
         yield "{} {}".format(first, surname)
@@ -99,14 +108,17 @@ class WriterBot(BotPlugin):
         Now you too can sound just like Geordi LaForge! Now with 100%
         more trans-plasmic shells!
         """
+
         pattern = self._get_data('techno_patterns')
         fix = self._get_data('techno_fix')
         babble = self._make_babble()
         thing = self._make_babble()
         fails = self._get_data('techno_fails')
         fails2 = self._get_data('techno_fails')
+
         if fails == fails2:
             fails2 = self._get_data('techno_fails')
+
         return pattern.format(fix=fix, babble=babble, thing=thing, fails=fails, fails2=fails2)
 
     @botcmd(admin_only=True)
@@ -116,18 +128,22 @@ class WriterBot(BotPlugin):
 
     def _make_babble(self):
         """Helper method to make babble"""
+
         pattern = self._get_data('techno_babble_patterns')
         location = self._get_data('techno_babble_locations')
         prefix = self._get_data('techno_babble_prefix')
         adj = self._get_data('techno_babble_adj')
         adj2 = self._get_data('techno_babble_adj')
+        noun = self._get_data('techno_babble_nouns')
+
         if adj == adj2:
             adj2 = self._get_data('techno_babble_adj')
-        noun = self._get_data('techno_babble_nouns')
+
         return pattern.format(location=location, prefix=prefix, adj=adj, adj2=adj2, noun=noun)
 
     def _get_data(self, src):
         """Helper method to fetch a random line of data"""
+
         return random.choice(self._data[src])
 
     def _load_data_cache(self):
@@ -135,13 +151,15 @@ class WriterBot(BotPlugin):
                 os.path.realpath(os.path.dirname(__file__)),
                 'data'
                 )
+
         #Start with a clean slate
         WriterBot._data = {}
+
         #Load our data files into memory
         for root, _, files in os.walk(data_dir):
             for filename in files:
                 datafile = os.path.join(root, filename)
                 basename, _ = os.path.splitext(filename)
-                with open(datafile) as f:
-                    WriterBot._data[basename] = [l.strip() for l in f.readlines()]
+                with open(datafile) as fh:
+                    WriterBot._data[basename] = [line.strip() for line in fh.readlines()]
 
