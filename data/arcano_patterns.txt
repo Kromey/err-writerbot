@@ -1,5 +1,8 @@
 {adj} {adj2} {noun}
+{adj} anti{noun}
+{adj} {mancy}mancer casting a {adj2} {noun}
 {adj} {noun}
 anti{adj} {noun}
+{mancy}mancer dispelling a {adj} {noun}
 {mancy}mancer with a {adj} {noun}
 {mancy}mantic {adj} {noun}
