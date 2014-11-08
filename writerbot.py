@@ -29,9 +29,9 @@ class WriterBot(BotPlugin):
         Bob risks his/her life to rescue someone.
         """
 
-        if args:
+        try:
             mc = args[0].capitalize()
-        else:
+        except IndexError:
             mc = '____'
 
         return self._get_data('bunnies').format(mc=mc)
