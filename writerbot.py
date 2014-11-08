@@ -138,6 +138,25 @@ class WriterBot(BotPlugin):
 
         return "{}mancer".format(self._get_data('mancies'))
 
+    @botcmd
+    def arcanobabble(self, msg, args):
+        """
+        Random arcanobabble
+
+        Prepare the necromantic psychic mana field!
+        """
+
+        pattern = self._get_data('arcano_patterns')
+        adj = self._get_data('arcano_babble_adj')
+        adj2 = self._get_data('arcano_babble_adj')
+        noun = self._get_data('arcano_babble_nouns')
+        mancy = self._get_data('mancies')
+
+        if adj == adj2:
+            adj2 = self._get_data('arcano_babble_adj')
+
+        return pattern.format(adj=adj, adj2=adj2, noun=noun, mancy=mancy)
+
     @botcmd(admin_only=True)
     def reload_data(self, msg, args):
         """Reload the cached data files afresh from disk"""

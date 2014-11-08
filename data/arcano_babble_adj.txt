@@ -1,0 +1,11 @@
+arcane
+chaotic
+divine
+druidic
+enlivining
+harmonic
+infernal
+mana
+natural
+psychic
+unnatural

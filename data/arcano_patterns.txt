@@ -1,0 +1,5 @@
+{adj} {adj2} {noun}
+{adj} {noun}
+anti{adj} {noun}
+{mancy}mancer with a {adj} {noun}
+{mancy}mantic {adj} {noun}
