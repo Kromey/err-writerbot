@@ -79,9 +79,9 @@ class WriterBot(BotPlugin):
         to generate names that will be used in other cultures.
         """
 
-        if args:
+        try:
             gender = 'male' if args[0].lower() == 'm' else 'female'
-        else:
+        except IndexError:
             gender = random.choice(('male', 'female'))
 
         if gender == 'male':
@@ -92,13 +92,17 @@ class WriterBot(BotPlugin):
         if random.randrange(5):
             surname = self._get_data('names_surnames')
         else:
-            surname = '-'.join((
-                self._get_data('names_surnames'),
-                self._get_data('names_surnames')
-                ))
+            name1 = self._get_data('names_surnames')
+            name2 = self._get_data('names_surnames')
+
+            if name1 == name2:
+                #Retry for a different name, but only once
+                name2 = self._get_data('names_surnames')
+
+            surname = '-'.join((name1, name2))
 
         yield "I've picked this {} name just for you:".format(gender)
-        yield "{} {}".format(first, surname)
+        yield ' '.join((first, surname))
 
     @botcmd
     def technobabble(self, msg, args):
@@ -117,12 +121,15 @@ class WriterBot(BotPlugin):
         fails2 = self._get_data('techno_fails')
 
         if fails == fails2:
+            #Only retry this once, don't want an infinite loop
             fails2 = self._get_data('techno_fails')
 
         return pattern.format(fix=fix, babble=babble, thing=thing, fails=fails, fails2=fails2)
 
     @botcmd(admin_only=True)
     def reload_data(self, msg, args):
+        """Reload the cached data files afresh from disk"""
+
         self._load_data_cache()
         return "Data cache reloaded"
 
@@ -137,6 +144,8 @@ class WriterBot(BotPlugin):
         noun = self._get_data('techno_babble_nouns')
 
         if adj == adj2:
+            #Retry for a different adjective, but only once
+            #Don't want an infinite loop
             adj2 = self._get_data('techno_babble_adj')
 
         return pattern.format(location=location, prefix=prefix, adj=adj, adj2=adj2, noun=noun)
@@ -147,6 +156,13 @@ class WriterBot(BotPlugin):
         return random.choice(self._data[src])
 
     def _load_data_cache(self):
+        """
+        Load the data files into memory.
+
+        The data files are stored in a dictionary in a class member
+        to avoid data duplication while improving performance.
+        """
+
         data_dir = os.path.join(
                 os.path.realpath(os.path.dirname(__file__)),
                 'data'
