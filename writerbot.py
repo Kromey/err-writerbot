@@ -210,6 +210,6 @@ class WriterBot(BotPlugin):
             for filename in files:
                 datafile = os.path.join(root, filename)
                 basename, _ = os.path.splitext(filename)
-                with open(datafile) as fh:
+                with open(datafile, encoding='utf-8') as fh:
                     WriterBot._data[basename] = [line.strip() for line in fh.readlines()]
 
