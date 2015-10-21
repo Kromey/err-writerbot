@@ -1,7 +1,8 @@
 import os
 import random
+import re
 
-from errbot import BotPlugin, botcmd
+from errbot import BotPlugin, botcmd, re_botcmd
 
 
 class WriterBot(BotPlugin):
@@ -64,8 +65,13 @@ class WriterBot(BotPlugin):
 
         return self.random_profession(msg, args)
 
-    @botcmd
-    def random_name(self, msg, args):
+    _name_responses = (
+            "Here's a good {gender} name: {first} {surname}",
+            "I once met a {gender} named {first} {surname}",
+            "Species {num} was fond of {first} {surname} for their {gender} children",
+            )
+    @re_botcmd(pattern=r'random.*name', flags=re.IGNORECASE)
+    def random_name(self, msg, match):
         """
         Get a random name
 
@@ -79,9 +85,12 @@ class WriterBot(BotPlugin):
         to generate names that will be used in other cultures.
         """
 
-        try:
-            gender = 'male' if args[0].lower() == 'm' else 'female'
-        except IndexError:
+        body = msg.body.lower().split(None)
+        if 'female' in body or 'woman' in body:
+            gender = 'female'
+        elif 'male' in body or 'man' in body:
+            gender = 'male'
+        else:
             gender = random.choice(('male', 'female'))
 
         if gender == 'male':
@@ -96,13 +105,13 @@ class WriterBot(BotPlugin):
             name2 = self._get_data('names_surnames')
 
             if name1 == name2:
-                #Retry for a different name, but only once
-                name2 = self._get_data('names_surnames')
+                #Oh well, just one name after all
+                surname = name1
+            else:
+                #Hyphenate
+                surname = '-'.join((name1, name2))
 
-            surname = '-'.join((name1, name2))
-
-        yield "I've picked this {} name just for you:".format(gender)
-        yield ' '.join((first, surname))
+        return random.choice(self._name_responses).format(gender=gender, first=first, surname=surname, num=random.randrange(2378,7890))
 
     @botcmd
     def technobabble(self, msg, args):
