@@ -85,6 +85,7 @@ class WriterBot(BotPlugin):
             "Here's a good {gender} name: {first} {surname}",
             "I once met a {gender} named {first} {surname}",
             "Species {num} was fond of {first} {surname} for their {gender} children",
+            "How about {first} {surname}?",
             )
     @re_botcmd(pattern=r'\bname\b', flags=re.IGNORECASE)
     def random_name(self, msg, match):
@@ -114,20 +115,15 @@ class WriterBot(BotPlugin):
         else:
             first = self._get_data('names_girls')
 
-        if random.randrange(5):
-            surname = self._get_data('names_surnames')
-        else:
-            name1 = self._get_data('names_surnames')
-            name2 = self._get_data('names_surnames')
-
-            if name1 == name2:
-                #Oh well, just one name after all
-                surname = name1
-            else:
-                #Hyphenate
-                surname = '-'.join((name1, name2))
+        surname = self._get_surname()
 
         return random.choice(self._name_responses).format(gender=gender, first=first, surname=surname, num=random.randrange(2378,7890))
+
+    @botcmd
+    def surname(self, msg, args):
+        surname = self._get_surname()
+
+        return "How about {surname}?".format(surname=surname)
 
     @botcmd
     def technobabble(self, msg, args):
@@ -188,6 +184,22 @@ class WriterBot(BotPlugin):
 
         self._load_data_cache()
         return "Data cache reloaded"
+
+    def _get_surname(self):
+        if random.randrange(5):
+            surname = self._get_data('names_surnames')
+        else:
+            name1 = self._get_data('names_surnames')
+            name2 = self._get_data('names_surnames')
+
+            if name1 == name2:
+                #Oh well, just one name after all
+                surname = name1
+            else:
+                #Hyphenate
+                surname = '-'.join((name1, name2))
+
+        return surname
 
     def _make_babble(self):
         """Helper method to make babble"""
