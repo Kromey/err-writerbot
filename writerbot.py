@@ -16,6 +16,10 @@ class WriterBot(BotPlugin):
         super(WriterBot, self).activate()
         self._load_data_cache()
 
+    @botcmd(hidden=True, split_args_with=None)
+    def bunny(self, msg, args):
+        return self.plot_bunny(msg, args)
+
     @botcmd(split_args_with=None)
     def plot_bunny(self, msg, args):
         """
@@ -37,6 +41,10 @@ class WriterBot(BotPlugin):
 
         return self._get_data('bunnies').format(mc=mc)
 
+    @botcmd(hidden=True)
+    def ninja(self, msg, args):
+        return self.plot_ninja(msg, args)
+
     @botcmd
     def plot_ninja(self, msg, args):
         """
@@ -49,6 +57,10 @@ class WriterBot(BotPlugin):
 
         return self._get_data('ninjas')
 
+    @botcmd(hidden=True)
+    def profession(self, msg, args):
+        return self.random_profession(msg, args)
+
     @botcmd
     def random_profession(self, msg, args):
         """
@@ -56,6 +68,10 @@ class WriterBot(BotPlugin):
         """
 
         return self._get_data('professions')
+
+    @botcmd(hidden=True)
+    def job(self, msg, args):
+        return self.random_profession(msg, args)
 
     @botcmd
     def random_job(self, msg, args):
