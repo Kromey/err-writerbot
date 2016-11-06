@@ -86,7 +86,7 @@ class WriterBot(BotPlugin):
             "I once met a {gender} named {first} {surname}",
             "Species {num} was fond of {first} {surname} for their {gender} children",
             )
-    @re_botcmd(pattern=r'random.*name', flags=re.IGNORECASE)
+    @re_botcmd(pattern=r'\bname\b', flags=re.IGNORECASE)
     def random_name(self, msg, match):
         """
         Get a random name
