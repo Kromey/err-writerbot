@@ -81,6 +81,27 @@ class WriterBot(BotPlugin):
 
         return self.random_profession(msg, args)
 
+    _writers_dice = [
+            ['Fish', 'Bird', 'Wizard', 'Robot', 'Dragon', 'Bug'],
+            ['Guys', 'Ladies', 'Kids', 'Lizards', 'Ghosts', 'Plants'],
+            ]
+    @botcmd
+    def writers_dice(self, msg, args):
+        """
+        Roll the famous Writer's Dice
+
+        As seen in Penny Arcade: https://www.penny-arcade.com/comic/2016/11/09/the-cubes-win
+        """
+
+        return "{} {}".format(
+                random.choice(self._writers_dice[0]),
+                random.choice(self._writers_dice[1]),
+                )
+
+    @botcmd(hidden=True)
+    def writer_dice(self, msg, args):
+        return self.writers_dice(msg, args)
+
     _name_responses = (
             "Here's a good {gender} name: {first} {surname}",
             "I once met a {gender} named {first} {surname}",
