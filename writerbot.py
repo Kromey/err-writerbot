@@ -54,8 +54,12 @@ class WriterBot(BotPlugin):
         ninjas) that can be found and provide a new twist or hook or
         otherwise get a story moving again.
         """
+        ninja = self._get_data('ninjas')
 
-        return self._get_data('ninjas')
+        if ninja == '<roll the writers dice>':
+            return self.writers_dice(msg, args)
+        else:
+            return ninja
 
     @botcmd(hidden=True)
     def profession(self, msg, args):
