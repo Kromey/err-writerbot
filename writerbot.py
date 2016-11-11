@@ -203,6 +203,25 @@ class WriterBot(BotPlugin):
 
         return pattern.format(adj=adj, adj2=adj2, noun=noun, mancy=mancy)
 
+    @botcmd
+    def not_said(self, msg, args):
+        """
+        Get some suggestions for words to use instead of "said".
+
+        From the list by Steven P. Wickstrom (http://www.spwickstrom.com/said/)
+        """
+        words = []
+
+        for i in range(5):
+            word = self._get_data('said')
+            while word in words:
+                word = self._get_data('said')
+
+            words.append(word)
+
+        return "Try {}".format(', '.join(words))
+
+
     @botcmd(admin_only=True)
     def reload_data(self, msg, args):
         """Reload the cached data files afresh from disk"""
