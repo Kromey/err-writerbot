@@ -210,14 +210,7 @@ class WriterBot(BotPlugin):
 
         From the list by Steven P. Wickstrom (http://www.spwickstrom.com/said/)
         """
-        words = []
-
-        for i in range(5):
-            word = self._get_data('said')
-            while word in words:
-                word = self._get_data('said')
-
-            words.append(word)
+        words = self._get_data('said', 5)
 
         return "Try {}".format(', '.join(words))
 
@@ -262,11 +255,14 @@ class WriterBot(BotPlugin):
 
         return pattern.format(location=location, prefix=prefix, adj=adj, adj2=adj2, noun=noun)
 
-    def _get_data(self, src):
+    def _get_data(self, src, count=1):
         """Helper method to fetch a random line of data"""
 
         try:
-            return random.choice(self._data[src])
+            if count == 1:
+                return random.choice(self._data[src])
+            else:
+                return random.sample(self._data[src], count)
         except KeyError:
             return "Sorry, {} is not one of my data files".format(src)
 
