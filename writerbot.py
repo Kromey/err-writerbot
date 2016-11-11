@@ -163,12 +163,7 @@ class WriterBot(BotPlugin):
         fix = self._get_data('techno_fix')
         babble = self._make_babble()
         thing = self._make_babble()
-        fails = self._get_data('techno_fails')
-        fails2 = self._get_data('techno_fails')
-
-        if fails == fails2:
-            #Only retry this once, don't want an infinite loop
-            fails2 = self._get_data('techno_fails')
+        fails, fails2 = self._get_data('techno_fails', 2)
 
         return pattern.format(fix=fix, babble=babble, thing=thing, fails=fails, fails2=fails2)
 
@@ -193,13 +188,9 @@ class WriterBot(BotPlugin):
         """
 
         pattern = self._get_data('arcano_patterns')
-        adj = self._get_data('arcano_babble_adj')
-        adj2 = self._get_data('arcano_babble_adj')
+        adj, adj2 = self._get_data('arcano_babble_adj', 2)
         noun = self._get_data('arcano_babble_nouns')
         mancy = self._get_data('mancies')
-
-        if adj == adj2:
-            adj2 = self._get_data('arcano_babble_adj')
 
         return pattern.format(adj=adj, adj2=adj2, noun=noun, mancy=mancy)
 
@@ -226,15 +217,8 @@ class WriterBot(BotPlugin):
         if random.randrange(5):
             surname = self._get_data('names_surnames')
         else:
-            name1 = self._get_data('names_surnames')
-            name2 = self._get_data('names_surnames')
-
-            if name1 == name2:
-                #Oh well, just one name after all
-                surname = name1
-            else:
-                #Hyphenate
-                surname = '-'.join((name1, name2))
+            #Hyphenate
+            surname = '-'.join(self._get_data('names_surnames', 2))
 
         return surname
 
@@ -244,14 +228,8 @@ class WriterBot(BotPlugin):
         pattern = self._get_data('techno_babble_patterns')
         location = self._get_data('techno_babble_locations')
         prefix = self._get_data('techno_babble_prefix')
-        adj = self._get_data('techno_babble_adj')
-        adj2 = self._get_data('techno_babble_adj')
+        adj, adj2 = self._get_data('techno_babble_adj', 2)
         noun = self._get_data('techno_babble_nouns')
-
-        if adj == adj2:
-            #Retry for a different adjective, but only once
-            #Don't want an infinite loop
-            adj2 = self._get_data('techno_babble_adj')
 
         return pattern.format(location=location, prefix=prefix, adj=adj, adj2=adj2, noun=noun)
 
