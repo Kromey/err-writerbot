@@ -111,7 +111,7 @@ class WriterBot(BotPlugin):
         except:
             num = 5
 
-        return "What about {}".format(
+        return "What about {}?".format(
                 ', '.join(self._get_data('hobbies', num)),
                 )
 
