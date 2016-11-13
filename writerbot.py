@@ -85,6 +85,18 @@ class WriterBot(BotPlugin):
 
         return self.random_profession(msg, args)
 
+    @botcmd(hidden=True)
+    def hobby(self, msg, args):
+        return self.random_hobby(msg, args)
+
+    @botcmd
+    def random_hobby(self, msg, args):
+        """
+        Get a random hobby
+        """
+
+        return self._get_data('hobbies')
+
     _writers_dice = [
             ['Fish', 'Bird', 'Wizard', 'Robot', 'Dragon', 'Bug'],
             ['Guys', 'Ladies', 'Kids', 'Lizards', 'Ghosts', 'Plants'],
