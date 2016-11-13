@@ -97,6 +97,24 @@ class WriterBot(BotPlugin):
 
         return self._get_data('hobbies')
 
+    @botcmd(hidden=True)
+    def hobbies(self, msg, args):
+        return self.random_hobbies(msg, args)
+
+    @botcmd
+    def random_hobbies(self, msg, args):
+        """
+        Get a list of random hobbies
+        """
+        try:
+            num = int(args)
+        except:
+            num = 5
+
+        return "What about {}".format(
+                ', '.join(self._get_data('hobbies', num)),
+                )
+
     _writers_dice = [
             ['Fish', 'Bird', 'Wizard', 'Robot', 'Dragon', 'Bug'],
             ['Guys', 'Ladies', 'Kids', 'Lizards', 'Ghosts', 'Plants'],
